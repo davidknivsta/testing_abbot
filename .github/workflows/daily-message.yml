@@ -3,8 +3,7 @@ name: Daily Telegram Message
 on:
   schedule:
     # Kör varje dag kl 18:00 UTC (20:00 svensk tid)
-    - cron: '45 10 * * *'
-    #- cron: '0 18 * * *'
+    - cron: '0 18 * * *'
   
   # Tillåt manuell körning för testning
   workflow_dispatch:
@@ -31,5 +30,7 @@ jobs:
       env:
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
+        GOOGLE_DOC_ID: ${{ secrets.GOOGLE_DOC_ID }}
+        GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
         DAILY_MESSAGE: ${{ secrets.DAILY_MESSAGE }}
       run: python main.py
