@@ -2,6 +2,46 @@ import os
 import requests
 from datetime import datetime
 import pytz
+import json
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+
+def get_message_from_google_docs(document_id, service_account_json):
+    """
+    Hämta meddelande från Google Docs
+    """
+    try:
+        # Skapa credentials från JSON
+        credentials = service_account.Credentials.from_service_account_info(
+            json.loads(service_account_json),
+            scopes=['https://www.googleapis.com/auth/documents.readonly']
+        )
+        
+        # Bygg Docs API service
+        service = build('docs', 'v1', credentials=credentials)
+        
+        # Hämta dokumentet
+        document = service.documents().get(documentId=document_id).execute()
+        
+        # Extrahera text från dokumentet
+        content = document.get('body', {}).get('content', [])
+        message_text = ""
+        
+        for element in content:
+            if 'paragraph' in element:
+                paragraph = element['paragraph']
+                for text_run in paragraph.get('elements', []):
+                    if 'textRun' in text_run:
+                        message_text += text_run['textRun']['content']
+        
+        # Ta bort extra whitespace men behåll radbrytningar
+        message_text = message_text.strip()
+     
+        return message_text
+        
+    except Exception as e:
+        print(f"❌ Fel vid hämtning från Google Docs: {e}")
+        return None
 
 def get_daily_message():
     """
