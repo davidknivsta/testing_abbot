@@ -4,7 +4,7 @@ on:
   schedule:
     # Kör varje dag kl 18:00 UTC (20:00 svensk tid)
     #- cron: '0 18 * * *'
-    - cron: '6 10 * * *'
+    - cron: '10 09 * * *'
   
   # Tillåt manuell körning för testning
   workflow_dispatch:
