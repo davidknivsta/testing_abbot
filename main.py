@@ -95,7 +95,7 @@ def main():
     
     # Skapa och skicka meddelandet
     # message = get_daily_message()
-    message = = os.getenv('DAILY_MESSAGE')
+    message = os.getenv('DAILY_MESSAGE')
     success = send_telegram_message(bot_token, chat_id, message)
     
     if success:
