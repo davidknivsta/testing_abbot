@@ -116,14 +116,19 @@ def send_telegram_message(bot_token, chat_id, message):
 def main():
     """
     Huvudfunktion som körs av GitHub Actions
-    Lägger dagens bön i main.
     """
-       
     print("🚀 Startar daglig bot...")
     
     # Hämta secrets från GitHub Actions miljövariabler
     bot_token = os.getenv('BOT_TOKEN')
     chat_id = os.getenv('CHAT_ID')
+    
+    # Google Docs konfiguration
+    document_id = os.getenv('GOOGLE_DOC_ID')
+    service_account_json = os.getenv('GOOGLE_SERVICE_ACCOUNT_JSON')
+    
+    # Fallback till DAILY_MESSAGE om Google Docs inte är konfigurerat
+    fallback_message = os.getenv('DAILY_MESSAGE')
     
     if not bot_token:
         print("❌ BOT_TOKEN saknas i GitHub Secrets")
@@ -133,9 +138,23 @@ def main():
         print("❌ CHAT_ID saknas i GitHub Secrets")
         exit(1)
     
-    # Skapa och skicka meddelandet
-    # message = get_daily_message()
-    message = os.getenv('DAILY_MESSAGE')
+    # Försök hämta meddelande från Google Docs först
+    message = None
+    if document_id and service_account_json:
+        print("📄 Hämtar meddelande från Google Docs...")
+        message = get_message_from_google_docs(document_id, service_account_json)
+    
+    # Fallback till DAILY_MESSAGE secret
+    if not message and fallback_message:
+        print("📝 Använder DAILY_MESSAGE från secrets...")
+        message = fallback_message
+    
+    # Sista fallback
+    if not message:
+        print("⚠️ Inget meddelande hittades, använder standard...")
+        message = "🌟 God kväll allihopa! Hoppas ni mår bra!"
+    
+    # Skicka meddelandet
     success = send_telegram_message(bot_token, chat_id, message)
     
     if success:
