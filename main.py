@@ -47,7 +47,7 @@ def get_daily_message():
     """
     Använder inte denna funktion nu. Men den ligger kvar
     för att kunna användas i framtiden för att till exempel
-    hämta dagens bön från ett Google document.
+    hämta dagens meddelande från ett Google document.
     (Orginalfunktion)
     Skapa dagens meddelande.
     Anpassa denna funktion för dina egna meddelanden!
