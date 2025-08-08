@@ -3,7 +3,7 @@ name: Daily Telegram Message
 on:
   schedule:
     # Kör varje dag kl 18:00 UTC (20:00 svensk tid)
-    - cron: '50 17 * * *'
+    - cron: '51 17 * * *'
   
   # Tillåt manuell körning för testning
   workflow_dispatch:
