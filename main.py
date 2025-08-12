@@ -128,7 +128,7 @@ def is_within_target_time():
    now_utc = datetime.now(utc_tz)
    
    # Måltid i svensk tid
-   target_hour = 12
+   target_hour = 16
    target_minute = 1
    
    print(f"🕐 Svensk tid nu: {now_stockholm.strftime('%H:%M:%S')}")
