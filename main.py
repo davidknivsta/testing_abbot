@@ -160,7 +160,12 @@ def main():
     Huvudfunktion som körs av GitHub Actions
     """
     print("🚀 Startar daglig bot...")
-    
+
+        # Kontrollera om det är rätt tid att köra
+    if not is_within_target_time():
+        print("⏭️ Schemaläggningskontroll misslyckades - avslutar")
+        exit(0)  # Exit utan fel (normal avslutning)
+        
     # Hämta secrets från GitHub Actions miljövariabler
     bot_token = os.getenv('BOT_TOKEN')
     chat_id = os.getenv('CHAT_ID')
