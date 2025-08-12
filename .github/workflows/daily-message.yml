@@ -1,13 +1,12 @@
 name: Daily Telegram Message
 
 on:
- schedule:
-    # Kör varje dag kl 18:00 UTC (20:00 svensk tid)
-   - cron: '2 12 * * *'  # <- 5 delar
-   - cron: '2 13 * * *'  # <- 5 delar
+  schedule:
+    - cron: '2 14 * * *'
+    - cron: '2 15 * * *'
   
-  # Tillåt manuell körning för testning
- workflow_dispatch:
+  workflow_dispatch:
+
 
 jobs:
   send-message:
