@@ -1,7 +1,7 @@
 name: Daily Telegram Message
 
 on:
-  schedule:
+ # schedule:
     # Kör varje dag kl 18:00 UTC (20:00 svensk tid)
   #  - cron: '30 14 * * *'
    # - cron: '30 15 * * *'
