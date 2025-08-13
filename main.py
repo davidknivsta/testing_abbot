@@ -128,8 +128,8 @@ def is_within_target_time():
    now_utc = datetime.now(utc_tz)
    
    # Måltid i svensk tid
-   target_hour = 14
-   target_minute = 55
+   target_hour = 15
+   target_minute = 30
    
    print(f"🕐 Svensk tid nu: {now_stockholm.strftime('%H:%M:%S')}")
    print(f"🌍 UTC tid nu: {now_utc.strftime('%H:%M:%S')}")
