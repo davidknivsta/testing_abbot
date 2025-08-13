@@ -137,7 +137,7 @@ def is_within_target_time():
    
    # Kontrollera om vi är inom 20 minuter från måltiden
    current_time = now_stockholm.time()
-   target_time = datetime.time(target_hour, target_minute)
+   target_time = time(target_hour, target_minute)
    
    # Konvertera till minuter för enklare jämförelse
    current_minutes = current_time.hour * 60 + current_time.minute
