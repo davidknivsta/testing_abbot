@@ -2,8 +2,8 @@ name: Daily Telegram Message
 
 on:
   schedule:
-    - cron: '30 13 * * *'
-    - cron: '30 14 * * *'
+    - cron: '30 9 * * *'
+    - cron: '30 10 * * *'
   
   workflow_dispatch:
 
