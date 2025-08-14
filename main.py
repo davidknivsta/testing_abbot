@@ -128,14 +128,14 @@ def is_within_target_time():
    now_utc = datetime.now(utc_tz)
    
    # Måltid i svensk tid
-   target_hour = 15
+   target_hour = 11
    target_minute = 30
    
    print(f"🕐 Svensk tid nu: {now_stockholm.strftime('%H:%M:%S')}")
    print(f"🌍 UTC tid nu: {now_utc.strftime('%H:%M:%S')}")
    print(f"🎯 Måltid: {target_hour:02d}:{target_minute:02d} svensk tid")
    
-   # Kontrollera om vi är inom 20 minuter från måltiden
+   # Kontrollera om vi är inom 40 minuter från måltiden
    current_time = now_stockholm.time()
    target_time = time(target_hour, target_minute)
    
@@ -148,8 +148,8 @@ def is_within_target_time():
    
    print(f"⏱️ Tidsskillnad från måltid: {time_diff} minuter")
    
-   if time_diff <= 20:
-       print("✅ Inom 20 minuter från måltid - fortsätter!")
+   if time_diff <= 40:
+       print("✅ Inom 40 minuter från måltid - fortsätter!")
        return True
    else:
        print("❌ För långt från måltid - avslutar")
